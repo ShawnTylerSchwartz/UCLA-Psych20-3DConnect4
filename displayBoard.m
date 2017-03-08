@@ -1,8 +1,14 @@
-function displayBoard(xdim,ydim,x,y,color)
+function displayBoard(xdim,ydim,x,y,zdim,color)
+maxDim = max([xdim ydim]);
+
 hold on;
+
+
 if (strcmp(color,'red') == 1)
+    subplot(maxDim,1,zdim)
     drawredcircle(x,y);
 elseif (strcmp(color,'black') == 1)
+    subplot(maxDim,1,zdim)
     drawblackcircle(x,y);
 end
 

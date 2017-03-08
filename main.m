@@ -5,9 +5,9 @@ rng('shuffle');
 
 boardWidth = input('Input width of board: ');
 boardHeight = input('Input height of board: ');
-% boardDepth = input('Depth of board: ');
+boardDepth = input('Depth of board: ');
 
-board = zeros(boardWidth, boardHeight);
+board = zeros(boardWidth, boardHeight, boardDepth);
 
 randTurn = randi(10);
 if rem(randTurn,2) == 1
@@ -17,12 +17,20 @@ else
 end
 
 disp(board);
-
-while checkWin2D(board) == 0
+maxDims = max([boardWidth boardHeight]);
+for i = 1:boardDepth
+    subplot(maxDims,1,i);
+    grid on
+     xlim([1 boardWidth]);
+ ylim([-boardHeight 0]);
+ xticks([0:boardWidth]);
+ yticks([-boardHeight:1]);
+end
+while checkWin(board) == 0
     if player == 1
         disp('Human turn');
-        [board, player, x_loc, y_loc] = makeConnect4MoveHuman(board, player);
-        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,'red');
+        [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveHuman(board, player);
+        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'red');
         
     
     
@@ -32,8 +40,8 @@ while checkWin2D(board) == 0
 %         [~, ~, x_loc, y_loc] = makeConnect4MoveAI(board, player);
 %         displayBoard(boardWidth,boardHeight,y_loc,x_loc,'black');
 
-    [board, player, x_loc, y_loc] = makeConnect4MoveAI(board, player);
-        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,'black');
+    [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveAI(board, player);
+        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'black');
       
     end
 %     player = player * (-1);
@@ -41,7 +49,7 @@ while checkWin2D(board) == 0
 %     displayBoard(boardWidth,boardHeight,y_loc,-x_loc,'red');
 end
 
-[win, winner] = checkWin2D(board);
+[win, winner] = checkWin(board);
 
 if winner == 1
     disp('Human won!');
