@@ -17,8 +17,6 @@ elseif (strcmp(color,'black') == 1)
     drawblackcircle(x,y);
 end
 
-% format the game plot board to proper number of axis ticks and axis value
-% limits & turn the axis grid on
 xlim([1 xdim]);
 ylim([-ydim 0]);
 xticks([0:xdim]);

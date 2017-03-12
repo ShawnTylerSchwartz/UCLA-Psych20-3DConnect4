@@ -40,34 +40,25 @@ end
 % continue to check if any player has won and if not continue allowing
 % gameplay
 while checkWin(board) == 0
-    
     % if 1, it is the humans turn
     if player == 1
-        disp('Human turn'); % tell the console whos turn it is
-        % call the makeConnect4MoveHuman function and store the coordinate locations
-        %  for formatted plotting (i.e. proper color of the game piece: red)
+        disp('Human turn'); % tell the c
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveHuman(board, player);
         displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'red');
-    
-    % if -1, it is the AIs turn
+        
     elseif player == -1
-        disp('AI Turn'); % tell the console whos turn it is
-        % call the makeConnect4MoveAI function and store the coordinate locations
-        %  for formatted plotting (i.e. proper color of the game piece: black)
+        disp('AI Turn');
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveAI(board, player);
         displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'black');
       
     end
-    
-    disp(board); % display the updated version of the game board in the console
-    
+    disp(board);
 end
 
-% now that we know its a win, find out which player has won
 [win, winner] = checkWin(board);
 
-if winner == 1 % if the human wins
-    disp('Human won!'); % print this to the console
-else % if the AI wins
-    disp('AI won!'); % print this to the console
+if winner == 1
+    disp('Human won!');
+else
+    disp('AI won!');
 end
