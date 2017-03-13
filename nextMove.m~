@@ -1,0 +1,17 @@
+function [column, slice] = nextMove(board, firstMoveCol, firstMoveSlice)
+%move one space away to the right or left 
+
+secMoveCol = firstMoveCol + 2; %look at spot one over to the right
+
+if board(numRow, secMoveCol, firstMoveSlice) ~= 0 %if it's filled  
+    secMoveCol = firstMoveCol - 1; %change to spot one over to the left
+    if board(numRow, secMoveCol, firstMoveSlice) ~= 0
+        secMoveCol = firstMoveCol + 1; %put piece directly next to original (to the right) 
+    end
+ 
+end 
+
+column = secMoveCol; 
+slice = firstMoveSlice;      
+
+end 

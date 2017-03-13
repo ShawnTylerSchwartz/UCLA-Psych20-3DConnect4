@@ -18,8 +18,15 @@ numRows = dimBoard(1);
 numCols = dimBoard(2);
 numSlice = dimBoard(3);
 
+%check if anyone's gone yet 
+if (sum(sum(board)) == 1) | (sum(sum(board)) == -1) % if true, then someone has gone already
+    [col, storeRow, slice, firstMoveCol] = firstMove(board);
+else
+    [col, storeRow, slice] = nextMove(board, firstMoveCol, firstMoveSlice);
+end
+
 %randomly select column 
-col = randi(numCols);
+col = randi(numCols); 
 slice = randi(numSlice);
 
 % use gravity function (for dropping pieces) 

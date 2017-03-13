@@ -4,6 +4,9 @@ clear;
 close all;
 rng('shuffle');
 
+%count AI moves 
+AIcount = 0; 
+
 % take in dimensions of the game playing board
 boardWidth = input('Input width of board: ');
 boardHeight = input('Input height of board: ');
@@ -56,6 +59,7 @@ while checkWin(board) == 0
         %  for formatted plotting (i.e. proper color of the game piece: black)
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveAI(board, player);
         displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'black');
+        AIcount = AIcount + 1; 
       
     end
     

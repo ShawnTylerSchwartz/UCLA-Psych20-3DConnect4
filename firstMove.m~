@@ -1,0 +1,26 @@
+function [column, slice] = firstMove(board)
+%outputs the best space
+
+% store the dimensions of the board 
+dimBoard = size(board);
+numRows = dimBoard(1); 
+numCols = dimBoard(2);
+numSlice = dimBoard(3);
+
+%check if anyone's gone yet 
+if sum(sum((board ~= 0)) % if true, then someone has gone already
+    
+    
+
+middleCol = round(numCols/2); 
+middleSlice = round(numSlice/2);
+
+%AI first move 
+if board(numRows, middleCol, middleSlice) == 0
+    middleSlice = middleSlice - 1; 
+end 
+
+column = middleCol; 
+slice = middleSlice; 
+
+end 
