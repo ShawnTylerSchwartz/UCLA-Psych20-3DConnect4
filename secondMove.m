@@ -1,14 +1,23 @@
-function [column, slice] = secondMove(board, firstMoveCol, firstMoveSlice)
-%move one space away to the right or left 
+function [col_loc, row_loc, slice_loc] = secondMove(board)
+% outputs the best space
 
-secMoveCol = firstMoveCol + 2; %look at spot one over to the right
-
-if board(numRow, secMoveCol, firstMoveSlice) ~= 0 %if it's filled  
-    secMoveCol = firstMoveCol - 2; %change to spot one over to the left
-    %if board(numRow, firstMoveCol - 2, firstMoveSlice) ~= 0
-end 
-
-column = secMoveCol; 
-slice = firstMoveSlice;      
+% store the dimensions of the board 
+dimBoard = size(board);
+numRows = dimBoard(1); 
+numCols = dimBoard(2);
+numSlice = dimBoard(3);
+    
+middleCol = round(numCols/2); 
+middleSlice = round(numSlice/2);
+    
+    if board(numRows, middleCol - 1, middleSlice) == 0
+        middleCol = middleCol - 1;
+    elseif (board(numRows, middleCol - 1, middleSlice) == 1) && (board(numRows, middleCol + 1, middleSlice) == 0)
+        middleSlice = middleSlice + 1;
+    end
+    
+col_loc = middleCol; 
+row_loc = numRows;
+slice_loc = middleSlice; 
 
 end 

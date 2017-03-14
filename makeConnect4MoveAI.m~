@@ -18,11 +18,21 @@ numRows = dimBoard(1);
 numCols = dimBoard(2);
 numSlice = dimBoard(3);
 
+% % check if anyone's gone yet 
+% if (sum(sum(board)) == 1) | (sum(sum(board)) == -1) % if true, then someone has gone already
+%     [col, storeRow, slice, firstMoveCol] = firstMove(board);
+% else
+%     [col, storeRow, slice] = nextMove(board, firstMoveCol, firstMoveSlice);
+% end
+% AIcount = 0;
+% if (AIcount == 0)
+
+
 randomPlayDecision = randi(10);
 if rem(randomPlayDecision, 2) == 1 % if its odd
-    useSmartAI = 1; % use the instant win AI algorithm
+    useSmartAI = 1; % it is the humans turn
 else  % if its even
-    useSmartAI = 0; % let the AI play randomly
+    useSmartAI = 0; % its the AIs turn
 end
 
 if (useSmartAI == 1)
@@ -42,45 +52,46 @@ if (useSmartAI == 1)
             storeRow = r;
         end
     end
-    
-    x_loc = col_loc;
-    y_loc = row_loc;
-    z_loc = slice_loc;
-
-elseif(useSmartAI == 0)
-    % randomly select column 
-    col = randi(numCols); 
-    slice = randi(numSlice);
-
-    % use gravity function (for dropping pieces) 
-    for r = 1:numRows
-
-        %if the spot is not filled and it's the last one, put their piece there
-        if board(r, col, slice) == 0 && r == numRows
-            board(r,col, slice) = currentPlayer; 
-            storeRow = r;
-        end
-
-        %if the spot isn't filled  and the one right after is, put their piece there 
-        if board(r,col, slice) == 0 && board(r+1, col, slice) ~= 0
-            board(r,col, slice) = currentPlayer;
-            storeRow = r;
-        end 
-
-        %if the spot isn't filled and neither is the one below, break out 
-        if board(r, col, slice) == 0 && board(r+1, col, slice) == 0
-            board(r,col, slice) = 0; 
-            storeRow = r;
-        end 
-
-    end 
-    x_loc = col;
-    y_loc = storeRow;
-    z_loc = slice;
 end
+
+el
+%randomly select column 
+col = randi(numCols); 
+slice = randi(numSlice);
+
+% use gravity function (for dropping pieces) 
+for r = 1:numRows
+    
+    %if the spot is not filled and it's the last one, put their piece there
+    if board(r, col, slice) == 0 && r == numRows
+        board(r,col, slice) = currentPlayer; 
+        storeRow = r;
+    end
+    
+    %if the spot isn't filled  and the one right after is, put their piece there 
+    if board(r,col, slice) == 0 && board(r+1, col, slice) ~= 0
+        board(r,col, slice) = currentPlayer;
+        storeRow = r;
+    end 
+    
+    %if the spot isn't filled and neither is the one below, break out 
+    if board(r, col, slice) == 0 && board(r+1, col, slice) == 0
+        board(r,col, slice) = 0; 
+        storeRow = r;
+    end 
+     
+end 
 
 % setup output values for output matrix
 updatedBoard = board; 
 player = currentPlayer * (-1); 
+% x_loc = col;
+% y_loc = storeRow;
+% z_loc = slice;
+
+x_loc = col_loc;
+y_loc = row_loc;
+z_loc = slice_loc;
+
 
 end

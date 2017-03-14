@@ -58,9 +58,7 @@ while checkWin(board) == 0
         % call the makeConnect4MoveAI function and store the coordinate locations
         %  for formatted plotting (i.e. proper color of the game piece: black)
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveAI(board, player);
-        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'black');
-        AIcount = AIcount + 1; 
-      
+        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'black');      
     end
     
     disp(board); % display the updated version of the game board in the console
