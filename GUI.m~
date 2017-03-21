@@ -27,11 +27,11 @@ function varargout = GUI(varargin)
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
-    'gui_Singleton',  gui_Singleton, ...
-    'gui_OpeningFcn', @GUI_OpeningFcn, ...
-    'gui_OutputFcn',  @GUI_OutputFcn, ...
-    'gui_LayoutFcn',  [] , ...
-    'gui_Callback',   []);
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @GUI_OpeningFcn, ...
+                   'gui_OutputFcn',  @GUI_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
@@ -63,7 +63,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = GUI_OutputFcn(hObject, eventdata, handles)
+function varargout = GUI_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -79,16 +79,16 @@ function selectGameType_Callback(hObject, eventdata, handles)
 % hObject    handle to selectGameType (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-contents = cellstr(get(hObject, 'String'));
-popChoice = contents{get(hObject, 'Value')};
+contents = cellstr(get(hObject, 'String')); 
+popChoice = contents{get(hObject, 'Value')}; 
 
 if (strcmp(popChoice,  'Human vs AI'))
-    type = 1;
+    type = 1; 
 elseif (strcmp(popChoice,  'Human vs Human'))
-    type = 2;
+    type = 2; 
 elseif (strcmp(popChoice,  'AI vs AI'))
     type = 3;
-end
+end 
 
 assignin('base', 'type', type)
 
@@ -114,9 +114,9 @@ contents = cellstr(get(hObject, 'String')); %returns selectRows contents as cell
 popChoice = contents{get(hObject, 'Value')}; %returns selected item from selectRows
 global numRows
 if (strcmp(popChoice,  ' 4'))
-    numRows = 4;
+    numRows = 4; 
 elseif (strcmp(popChoice,  ' 5'))
-    numRows = 5;
+    numRows = 5; 
 elseif (strcmp(popChoice,  ' 6'))
     numRows = 6;
 elseif (strcmp(popChoice,  ' 7'))
@@ -125,7 +125,7 @@ elseif (strcmp(popChoice,  ' 8'))
     numRows = 8;
 elseif (strcmp(popChoice,  ' 9'))
     numRows = 9;
-end
+end 
 
 assignin('base', 'numRows', numRows)
 
@@ -154,9 +154,9 @@ popChoice = contents{get(hObject, 'Value')}; %returns selected item from selectR
 global numCols
 
 if (strcmp(popChoice,  ' 4'))
-    numCols = 4;
+    numCols = 4; 
 elseif (strcmp(popChoice,  ' 5'))
-    numCols = 5;
+    numCols = 5; 
 elseif (strcmp(popChoice,  ' 6'))
     numCols = 6;
 elseif (strcmp(popChoice,  ' 7'))
@@ -165,7 +165,7 @@ elseif (strcmp(popChoice,  ' 8'))
     numCols = 8;
 elseif (strcmp(popChoice,  ' 9'))
     numCols = 9;
-end
+end 
 
 % guidata(object_handle,numCols)
 % data = guidata(object_handle)
@@ -198,9 +198,9 @@ popChoice = contents{get(hObject, 'Value')}; %returns selected item from selectR
 global numSlices
 
 if (strcmp(popChoice,  ' 4'))
-    numSlices = 4;
+    numSlices = 4; 
 elseif (strcmp(popChoice,  ' 5'))
-    numSlices = 5;
+    numSlices = 5; 
 elseif (strcmp(popChoice,  ' 6'))
     numSlices = 6;
 elseif (strcmp(popChoice,  ' 7'))
@@ -209,7 +209,7 @@ elseif (strcmp(popChoice,  ' 8'))
     numSlices = 8;
 elseif (strcmp(popChoice,  ' 9'))
     numSlices = 9;
-end
+end 
 assignin('base', 'numSlices', numSlices)
 
 % --- Executes during object creation, after setting all properties.
@@ -231,17 +231,17 @@ end
 function startGame_Callback(hObject, eventdata, handles)
 % hObject    handle to startGame (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% handles    structure with handles and user data (see GUIDATA)  
 
 rng('shuffle');
 
-%DISPLAY EMPTY BOARD, should be getting these from popup menus
+%DISPLAY EMPTY BOARD, should be getting these from popup menus 
 global numRows
 global numSlices
 global numCols
 
 boardDepth = numSlices;
-boardWidth = numCols;
+boardWidth = numCols; 
 boardHeight = numRows;
 
 maxDims = max([boardWidth boardHeight]);
@@ -255,8 +255,8 @@ for i = 1:boardDepth
     ylim([-boardHeight 0]);
     xticks([0:boardWidth]);
     yticks([-boardHeight:1]);
-    %     set(gca, 'XTickLabelMode', 'manual', 'XTickLabel', []);
-    %     set(gca, 'YTickLabelMode', 'manual', 'YTickLabel', []);
+%     set(gca, 'XTickLabelMode', 'manual', 'XTickLabel', []);
+%     set(gca, 'YTickLabelMode', 'manual', 'YTickLabel', []);
     
 end
 
@@ -274,45 +274,38 @@ while checkWin(board) == 0
     
     % if 1, it is the humans turn
     if player == 1
-        %         disp('Human turn'); % tell the console whos turn it is
+%         disp('Human turn'); % tell the console whos turn it is
         % call the makeConnect4MoveHuman function and store the coordinate locations
         %  for formatted plotting (i.e. proper color of the game piece: red)
         
         
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveHuman(board, player);
-        %         subplot(5,1,5)
-        
+%         subplot(5,1,5)
+
         
         %displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'red');
         %(xdim,ydim,x,y,zdim,color)
-        %         subplot(maxDim,1,zdim
-        % maxDim = max([xdim ydim]
-        hold on;
-        subplot(maxDims,1,z_loc)
+%         subplot(maxDim,1,zdim
+% maxDim = max([xdim ydim]
+    subplot(maxDims,1,z_loc)
+
         drawredcircle(x_loc, -y_loc);
-        xlim([1 boardWidth]);
-        ylim([-boardHeight 0]);
-        xticks([0:boardWidth]);
-        yticks([-boardHeight:1]);
-        grid on;
-        
-        
-        
-        % if -1, it is the AIs turn
+                grid on;  
+
+    
+    % if -1, it is the AIs turn
     elseif player == -1
         %disp('AI Turn'); % tell the console whos turn it is
         % call the makeConnect4MoveAI function and store the coordinate locations
         %  for formatted plotting (i.e. proper color of the game piece: black)
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveAI(board, player);
-        hold on;
-        subplot(maxDims,1,z_loc)
-        drawblackcircle(x_loc, -y_loc);
-        xlim([1 boardWidth]);
-        ylim([-boardHeight 0]);
-        xticks([0:boardWidth]);
-        yticks([-boardHeight:1]);
-        grid on;
-        
+%         displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'black'); 
+        subplot(4,round(boardDepth/2),z_loc); 
+        grid on; 
+        xlim([1 5]);
+        ylim([-5 1]);
+        %pbaspect([5 5 1])
+        drawblackcircle(x_loc, -1);
     end
     
     %disp(board); % display the updated version of the game board in the console
@@ -322,25 +315,25 @@ end
 
 
 
-% %GETTING COL THAT THEY SELECTED
-% [xpos, ypos] = ginput(1);
-% assignin('base', 'xpos', xpos);
-% assignin('base', 'ypos', ypos);
-%
-% h = findobj('Tag','selectCols');
-% data = h.UserData;
-%
-% % finding which column they clicked
-% % 1 = end , the max number of cols
-% % 5 = numCols
+% %GETTING COL THAT THEY SELECTED 
+% [xpos, ypos] = ginput(1); 
+% assignin('base', 'xpos', xpos); 
+% assignin('base', 'ypos', ypos); 
+% 
+% h = findobj('Tag','selectCols'); 
+% data = h.UserData; 
+% 
+% % finding which column they clicked 
+% % 1 = end , the max number of cols  
+% % 5 = numCols 
 % for n = 1:numCols
 %     if n*(1/numCols) > xpos && (n-1)*(1/numCols) < xpos
-%         col = n;
-%     else
-%         col = 1;
-%     end
-% end
-%
-%  assignin('base', 'col', col);
+%         col = n; 
+%     else 
+%         col = 1; 
+%     end 
+% end 
+% 
+%  assignin('base', 'col', col); 
 
-%IF IT'S HUMAN VS AI
+%IF IT'S HUMAN VS AI 
