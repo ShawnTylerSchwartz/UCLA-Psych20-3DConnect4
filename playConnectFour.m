@@ -8,9 +8,15 @@ rng('shuffle');
 AIcount = 0; 
 
 % take in dimensions of the game playing board
-boardWidth = input('Input width of board: ');
-boardHeight = input('Input height of board: ');
-boardDepth = input('Depth of board: ');
+prompt = {'Input width of board:','Input height of board:', 'Input depth of board:', 'Game Type (1=Human vs. AI, 2=Human vs. Human, 3=AI vs. AI)'};
+dlg_title = 'Input';
+num_lines = 1;
+defaultans = {'4','4','4', '1'};
+answer = inputdlg(prompt,dlg_title,num_lines,defaultans);
+boardWidth = str2num(answer{1});
+boardHeight = str2num(answer{2});
+boardDepth = str2num(answer{3});
+gameType = str2num(answer{4});
 
 % create the game playing board object
 board = zeros(boardWidth, boardHeight, boardDepth);
