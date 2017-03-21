@@ -76,6 +76,8 @@ end
 
 if winner == 1 % if the human wins
     disp('Human won!'); % print this to the console
+    humanWin = msgbox({'Human Won!'});
 else % if the AI wins
     disp('AI won!'); % print this to the console
+    aiWin = msgbox({'AI Won!'});
 end
