@@ -323,6 +323,13 @@ while checkWin(board) == 0
     
 end
 
+[win, winner] = checkWin(board);
+
+if winner == 1
+   humanWin = msgbox({'Human Won!'});
+else
+   aiWin = msgbox({'AI Won!'});
+end
 
 
 
