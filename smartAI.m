@@ -1,4 +1,4 @@
-function [storeCol, storeSlice]=smartAI(board)
+function [storeCol, storeSlice] = smartAI(board)
 rng('shuffle');
 
 % store the dimensions of the board
@@ -167,16 +167,8 @@ for z = 1:numSlice
     end
 end % end search through every space
 
-
 % if still hasn't found a good location, make a random move
 storeCol = randi(numCols);
 storeSlice = randi(numSlice);
 
-
 end
-
-
-
-
-
-

@@ -12,10 +12,9 @@ numRows = dimBoard(1);
 numCols = dimBoard(2);
 numSlice = dimBoard(3);
 
-%randomly select a column and slice
-col = randi(numCols);
-slice = randi(numSlice);
-storeRow = numRows;
+[storeCol,storeSlice] = smartAI(board); 
+col = storeCol; 
+slice = storeSlice; 
 
 %use gravity function
 for r = 1:numRows
