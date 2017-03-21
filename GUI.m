@@ -148,6 +148,8 @@ function selectCols_Callback(hObject, eventdata, handles)
 % hObject    handle to selectCols (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
 contents = cellstr(get(hObject, 'String')); %returns selectRows contents as cell array
 popChoice = contents{get(hObject, 'Value')}; %returns selected item from selectRows
 
@@ -236,6 +238,8 @@ function startGame_Callback(hObject, eventdata, handles)
 rng('shuffle');
 
 %DISPLAY EMPTY BOARD, should be getting these from popup menus
+
+
 global numRows
 global numSlices
 global numCols
