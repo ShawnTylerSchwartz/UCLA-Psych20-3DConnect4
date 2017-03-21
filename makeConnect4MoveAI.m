@@ -18,7 +18,7 @@ numRows = dimBoard(1);
 numCols = dimBoard(2);
 numSlice = dimBoard(3);
 
-[storeCol,storeSlice] = untitled11(board); 
+[storeCol,storeSlice] = AISmartDecision(board); 
 col = storeCol; 
 slice = storeSlice; 
 

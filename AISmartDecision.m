@@ -1,4 +1,4 @@
-function [storeCol, storeSlice]=untitled11(board)
+function [storeCol, storeSlice] = AISmartDecision(board)
 
 % store the dimensions of the board
 dimBoard = size(board);
