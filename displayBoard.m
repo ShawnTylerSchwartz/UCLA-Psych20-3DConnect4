@@ -10,19 +10,24 @@ hold on; % allow multiple game pieces to be plotted together on same game board
 
 % determine the color of the piece that is being plotted on the game plot
 if (strcmp(color,'red') == 1)
-    subplot(maxDim,1,zdim)
-    drawredcircle(x,y);
+    subplot(maxDims,1,z_loc)
+        drawredcircle(x_loc, -y_loc);
+        xlim([1 boardWidth]);
+        ylim([-boardHeight 0]);
+        xticks([0:boardWidth]);
+        yticks([-boardHeight:1]);
+        grid on;
 elseif (strcmp(color,'black') == 1)
-    subplot(maxDim,1,zdim)
-    drawblackcircle(x,y);
+    hold on;
+        subplot(maxDims,1,z_loc)
+        drawblackcircle(x_loc, -y_loc);
+        xlim([1 boardWidth]);
+        ylim([-boardHeight 0]);
+        xticks([0:boardWidth]);
+        yticks([-boardHeight:1]);
+        grid on;
 end
 
 % format the game plot board to proper number of axis ticks and axis value
 % limits & turn the axis grid on
-xlim([1 xdim]);
-ylim([-ydim 0]);
-xticks([0:xdim]);
-yticks([-ydim:1]);
-grid on
-
 end

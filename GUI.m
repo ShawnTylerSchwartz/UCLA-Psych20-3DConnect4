@@ -235,6 +235,11 @@ function startGame_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+% clear console, variables and plots for fresh game
+clc
+clear;
+close all;
+
 rng('shuffle');
 
 %DISPLAY EMPTY BOARD, should be getting these from popup menus
@@ -259,8 +264,6 @@ for i = 1:boardDepth
     ylim([-boardHeight 0]);
     xticks([0:boardWidth]);
     yticks([-boardHeight:1]);
-    %     set(gca, 'XTickLabelMode', 'manual', 'XTickLabel', []);
-    %     set(gca, 'YTickLabelMode', 'manual', 'YTickLabel', []);
     
 end
 
@@ -284,21 +287,9 @@ while checkWin(board) == 0
         
         
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveHuman(board, player);
-        %         subplot(5,1,5)
+        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'red');
         
         
-        %displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'red');
-        %(xdim,ydim,x,y,zdim,color)
-        %         subplot(maxDim,1,zdim
-        % maxDim = max([xdim ydim]
-        hold on;
-        subplot(maxDims,1,z_loc)
-        drawredcircle(x_loc, -y_loc);
-        xlim([1 boardWidth]);
-        ylim([-boardHeight 0]);
-        xticks([0:boardWidth]);
-        yticks([-boardHeight:1]);
-        grid on;
         
         
         
@@ -308,14 +299,9 @@ while checkWin(board) == 0
         % call the makeConnect4MoveAI function and store the coordinate locations
         %  for formatted plotting (i.e. proper color of the game piece: black)
         [board, player, x_loc, y_loc, z_loc] = makeConnect4MoveAI(board, player);
-        hold on;
-        subplot(maxDims,1,z_loc)
-        drawblackcircle(x_loc, -y_loc);
-        xlim([1 boardWidth]);
-        ylim([-boardHeight 0]);
-        xticks([0:boardWidth]);
-        yticks([-boardHeight:1]);
-        grid on;
+        displayBoard(boardWidth,boardHeight,x_loc,-y_loc,z_loc,'black');
+
+        
         
     end
     
@@ -330,28 +316,3 @@ if winner == 1
 else
    aiWin = msgbox({'AI Won!'});
 end
-
-
-
-% %GETTING COL THAT THEY SELECTED
-% [xpos, ypos] = ginput(1);
-% assignin('base', 'xpos', xpos);
-% assignin('base', 'ypos', ypos);
-%
-% h = findobj('Tag','selectCols');
-% data = h.UserData;
-%
-% % finding which column they clicked
-% % 1 = end , the max number of cols
-% % 5 = numCols
-% for n = 1:numCols
-%     if n*(1/numCols) > xpos && (n-1)*(1/numCols) < xpos
-%         col = n;
-%     else
-%         col = 1;
-%     end
-% end
-%
-%  assignin('base', 'col', col);
-
-%IF IT'S HUMAN VS AI
